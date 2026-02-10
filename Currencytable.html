@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>Currency Converter</title>
+    <link rel="stylesheet" type="text/css" href="static/currency.css">
+</head>
+<body>
+
+    <h1>Currency Exchange Rates</h1>
+
+    <!-- Exchange rate table -->
+    <table border="1">
+        <tr>
+            <th>From</th>
+            <th>USD</th>
+            <th>EUR</th>
+            <th>GBP</th>
+            <th>JPY</th>
+            <th>CAD</th>
+        </tr>
+        <tr>
+            <td>USD</td>
+            <td>1</td>
+            <td>1.18</td>
+            <td>1.36</td>
+            <td>0.0064</td>
+            <td>0.73</td>
+        </tr>
+        <tr>
+            <td>EUR</td>
+            <td>0.85</td>
+            <td>1</td>
+            <td>1.15</td>
+            <td>0.54</td>
+            <td>0.62</td>
+        </tr>
+        <tr>
+            <td>GBP</td>
+            <td>0.74</td>
+            <td>0.87</td>
+            <td>1</td>
+            <td>0.47</td>
+            <td>0.54</td>
+        </tr>
+        <tr>
+            <td>JPY</td>
+            <td>157.05</td>
+            <td>185.47</td>
+            <td>213.59</td>
+            <td>1</td>
+            <td>115.12</td>
+        </tr>
+        <tr>
+            <td>CAD</td>
+            <td>1.36</td>
+            <td>1.61</td>
+            <td>1.86</td>
+            <td>0.0087</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <form method="POST">
+        <label>Amount:</label>
+        <input type="text" name="amount"><br><br>
+
+        <label>From:</label>
+        <select name="fromCurrency">
+            <option>USD</option>
+            <option>EUR</option>
+            <option>GBP</option>
+            <option>JPY</option>
+            <option>CAD</option>
+        </select>
+
+        <label>To:</label>
+        <select name="toCurrency">
+            <option>USD</option>
+            <option>EUR</option>
+            <option>GBP</option>
+            <option>JPY</option>
+            <option>CAD</option>
+        </select>
+
+        <br><br>
+        <button type="submit">CONVERT</button>
+    </form>
+
+    <br>
+
+  
+    {% if result %}
+        <h3>{{ result }}</h3>
+    {% endif %}
+
+</body>
+</html>
