@@ -7,7 +7,6 @@
 
     <h1>Currency Exchange Rates</h1>
 
-    <!-- Exchange rate table -->
     <table border="1">
         <tr>
             <th>From</th>
@@ -61,7 +60,9 @@
 
     <br>
 
-    <form method="POST">
+    <!-- IMPORTANT: action="/greet" -->
+    <form action="/greet" method="POST">
+
         <label>Amount:</label>
         <input type="text" name="amount"><br><br>
 
@@ -89,7 +90,6 @@
 
     <br>
 
-  
     {% if result %}
         <h3>{{ result }}</h3>
     {% endif %}
