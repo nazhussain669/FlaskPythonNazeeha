@@ -2,120 +2,41 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/',methods=['GET'])
+@app.route('/')
 def index():
-    return render_template('Currencytable.html')
+    return render_template("Currencytable.html")
+
 
 @app.route('/greet', methods=['POST'])
 def greet():
+
     amount = request.form.get("amount")
     frm = request.form.get("fromCurrency")
     to = request.form.get("toCurrency")
 
+    # Validate amount (required)
     if amount == "" or float(amount) < 0:
         result = "Please enter a valid non-negative amount."
     else:
         amount = float(amount)
 
-    if frm == "USD":
-        if to == "USD":
-            rate = 1
-        else:
-            if to == "EUR":
-                rate = 1.18
-            else:
-                if to == "GBP":
-                    rate = 1.36
-                else:
-                    if to == "JPY":
-                        rate = 0.0064
-                            else:
-                                if to == "CAD":
-                                    rate = 0.73
-                                        else:
-                                            rate = 1
-    else:
-        if frm == "EUR":
-            if to == "USD":
-                rate = 0.85
-            else:
-                if to == "EUR":
-                    rate = 1
-                else:
-                    if to == "GBP":
-                        rate = 1.15
-                    else:
-                        if to == "JPY":
-                            rate = 0.54
-                        else:
-                            if to == "CAD":
-                                rate = 0.62
-                            else:
-                                rate = 1
-    else:
-        if frm == "GBP":
-            if to == "USD":
-                rate = 0.74
-            else:
-                if to == "EUR":
-                    rate = 0.87
-                else:
-                    if to == "GBP":
-                        rate = 1
-                    else:
-                        if to == "JPY":
-                            rate = 0.47
-                        else:
-                            if to == "CAD":
-                                rate = 0.54
-                            else:
-                                rate = 1
-    else:
-        if frm == "JPY":
-            if to == "USD":
-                rate = 157.05
-            else:
-                if to == "EUR":
-                    rate = 185.47
-                else:
-                    if to == "GBP":
-                        rate = 213.59
-                    else:
-                        if to == "JPY":
-                            rate = 1
-                        else:
-                            if to == "CAD":
-                                rate = 115.12
-                            else:
-                                rate = 1
-    else:
-        if frm == "CAD":
-            if to == "USD":
-                rate = 1.36
-            else:
-                if to == "EUR":
-                    rate = 1.61
-                else:
-                    if to == "GBP":
-                        rate = 1.86
-                    else:
-                        if to == "JPY":
-                            rate = 0.0087
-                        else:
-                            if to == "CAD":
-                                rate = 1
-                            else:
-                                rate = 1
-                else:
-                    rate = 1
+        # Exchange rate dictionary
+        rates = {
+            "USD": {"USD":1, "EUR":1.18, "GBP":1.36, "JPY":0.0064, "CAD":0.73},
+            "EUR": {"USD":0.85, "EUR":1, "GBP":1.15, "JPY":0.54, "CAD":0.62},
+            "GBP": {"USD":0.74, "EUR":0.87, "GBP":1, "JPY":0.47, "CAD":0.54},
+            "JPY": {"USD":157.05, "EUR":185.47, "GBP":213.59, "JPY":1, "CAD":115.12},
+            "CAD": {"USD":1.36, "EUR":1.61, "GBP":1.86, "JPY":0.0087, "CAD":1}
+        }
 
+        from_rates = rates[frm] # Get the row for the FROM currency
+        rate = from_rates[to] # Get the rate for the TO currency
 
-
-    converted = amount * rate
-    result = "Converted Amount: " + str(converted)
+        converted = amount * rate
+        result = "Converted Amount: " + str(converted)
 
     return render_template("Currencytable.html", result=result)
 
 
-if __name__== '__main__':
+if __name__ == '__main__':
     app.run()
