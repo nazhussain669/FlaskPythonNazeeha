@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title>URL_FOR</title>
+	    <link rel="stylesheet" href="/static/custom.css>
+	</head>
+	<body>
+		<form action="{{url_for('CollectInfo')}}">
+			<table id="tblinput">
+				<tr>
+					<td>
+						<label id="lblfirstname" name="lblfirstname">First Name</label>
+					</td>
+					<td>
+						<input type="text" id="txtfname" name="txtfirstname" autofocus></input>
+					</td>
+					<td>
+						<label id="lblmidinit" name="lblmidinit">Middle Initial</label>
+					</td>
+					<td>
+						<input type="text" id="txtminit" name="txtmidinit" size="1" maxlength="1"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="lbllastname" name="lbllastname">Last Name</label>
+					</td>
+					<td>
+						<input type="text" id="txtlname" name="txtlastname"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<button type="submit" id="btnsubmit" name="btnsubmit">SUBMIT</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+					
+	
