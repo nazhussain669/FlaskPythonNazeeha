@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>OutPut...URL_FOR</title>
+	</head>
+	<body>
+		<ul>
+			{%for course in courses%}
+				<li>{{course}}</li>
+			{%endfor%}
+		</ul>
+		<a href="{{ url_for('index') }}"><button type="submit">Go Back</button></a>
+	</body>
+</html>
