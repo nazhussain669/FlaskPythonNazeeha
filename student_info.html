@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>STUDENT INFO</title>
+    <link rel="stylesheet" type="text/css" href="static/addstudent.css">
+</head>
+<body>
+	<h1>Add New Student</h1>
+	<h2>General Information</h2>
+	
+	<form action="{{url_for('CollectInfo')}}">
+	
+        <label>First Name:</label>
+        <input type="text" name="fname"><br><br>
+		
+		<label>Last Name:</label>
+        <input type="text" name="lname"><br><br>
+		
+		<label>Birth Date (mm/dd/yyyy):</label>
+        <input type="text" name="bday"><br><br>
+		
+		<label>OSIS:</label>
+        <input type="number" name="id"><br><br>
+
+        <label>School:</label>
+        <select name="school">
+            <option>Hillcrest High School</option>
+        </select><br><br>
+		
+		<label>Program Type:</label>
+        <select name="program">
+            <option>CTE</option>
+			<option>Non CTE</option>
+        </select><br><br>
+		
+		<label>Pathway:</label>
+        <select name="path">
+            <option>CAD - Computer Aided-Design</option>
+			<option>CNA - Certified Nursing Assisting</option>
+			<option>EMS - Emergency Medical Services</option>
+			<option>SWE - Software Engineering</option>
+			<option>VE - Virtual Enterprise/Entrepreneur</option>
+        </select><br><br>
+		
+		<button type="submit">SAVE</button>
+		
+		<a href="{{ url_for('index') }}"><button type="button">CANCEL</button></a>
+		
+	</form>
+</body>
+</html>

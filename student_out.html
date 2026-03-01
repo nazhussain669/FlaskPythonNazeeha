@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Student Output</title>
+</head>
+<body>
+
+    <h1>Student Information</h1>
+
+    <ul>
+        <li>First Name: {{fname}}</li>
+        <li>Last Name: {{lname}}</li>
+        <li>Birth Date: {{bday}}</li>
+        <li>OSIS: {{id}}</li>
+        <li>School: {{school}}</li>
+        <li>Program Type: {{program}}</li>
+        <li>Pathway: {{path}}</li>
+    </ul>
+
+    <a href="{{ url_for('index') }}">
+        <button type="submit">Go Back</button>
+    </a>
+
+</body>
+</html>

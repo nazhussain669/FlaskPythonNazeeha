@@ -1,0 +1,34 @@
+body 
+{
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    text-align: left-side;
+    padding: 50px;
+}
+
+h1 
+{
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+label
+{
+	display: inline-block;
+	color: #000000;
+	font-size: 20px;
+}
+
+select 
+{
+    padding: 3px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+select:hover 
+{
+    border-color: #3498db;
+}
+
