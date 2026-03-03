@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>STUDENT INFO</title>
+    <link rel="stylesheet" type="text/css" href="static/addstudent.css">
+</head>
+<body>
+	<h1>Add New Student</h1>
+	<h2>General Information</h2>
+	
+	<form action="{{url_for('CollectInfo')}}">
+	
+        <label>First Name:</label>
+        <input type="text" name="fname" required><br><br>
+		
+		<label>Last Name:</label>
+        <input type="text" name="lname" required><br><br>
+		
+		<label>Birth Date (mm/dd/yyyy):</label>
+        <input type="text" name="bday" required><br><br>
+		
+		<label>OSIS:</label>
+        <input type="number" name="id" required><br><br>
+
+        <label>School:</label>
+        <select name="school">
+            {% for s in schools %}
+                <option>{{s}}</option>
+            {% endfor %}
+        </select><br><br>
+		
+		<label>Program Type:</label>
+        <select name="program">
+            {% for p in programs %}
+                <option>{{p}}</option>
+            {% endfor %}
+        </select><br><br>
+		
+		<label>Pathway:</label>
+        <select name="path">
+            {% for pa in paths %}
+                <option>{{pa}}</option>
+            {% endfor %}
+        </select><br><br>
+		
+		<button type="submit">SAVE</button>
+		
+		<a href="{{ url_for('index') }}">
+			<button type="button">CANCEL</button>
+		</a>
+		
+	</form>
+</body>
+</html>
