@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Table Filled With Data</title>
+		<link rel="stylesheet" href="/static/currency.css"></link>
+	</head>
+	<body>
+		<table id="tblinfo" name="tblinfo">
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+			</tr>
+				{% for student in studentinfo %}
+					<tr>
+						<td>{{ student.id }}</td>
+						<td>
+							<a href="{{ url_for('CollectInfo', id=student.id) }}"></a>
+								{{ student.name }}
+						</td>
+					</tr>
+				{% endfor %}
+			<tr>
+				<td>
+					<a href="{{url_for('index')}}"><button>Go Back</button></a>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+				
