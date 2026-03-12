@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Table Filled With Data</title>
+		<link rel="stylesheet" href="/static/currency.css"></link>
+	</head>
+	<body>
+		<table id="tblinfo" name="tblinfo">
+			<tr>
+				<th>FULLNAME</th>
+				<th>MIDINIT</th>
+				<th>BDAY</th>
+				<th>ID</th>
+				<th>SCHOOL</th>
+				<th>PROGRAM</th>
+				<th>PATH</th>
+			</tr>
+					<tr>
+						<td>{{ fullname }}</td>
+						<td>{{ bday }}</td>
+						<td>{{ id }}</td>
+						<td>{{ school }}</td>
+						<td>{{ program }}</td>
+						<td>{{ path }}</td>
+					</tr>
+			<tr>
+				<td>
+					<a href="{{url_for('index')}}"><button>Go Back</button></a>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+				
