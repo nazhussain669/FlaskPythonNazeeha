@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Student Table</title>
+</head>
+<body>
+
+    <h1>Student Information Table</h1>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>BIRTH DATE</th>
+            <th>SCHOOL</th>
+            <th>PROGRAM</th>
+            <th>PATHWAY</th>
+        </tr>
+
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.bday }}</td>
+            <td>{{ student.school }}</td>
+            <td>{{ student.program }}</td>
+            <td>{{ student.path }}</td>
+        </tr>
+
+        <tr>
+            <td>
+                <a href="{{url_for('index')}}"><button>Go Back</button></a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
