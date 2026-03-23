@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Student Info Table</title>
+	<link rel="stylesheet" type="text/css" href="static/style_table_student.css">
+</head>
+<body>
+
+    <h1>Student Information Table</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>FIRST NAME</th>
+			<th>MIDDLE INITIAL</th>
+			<th>LAST NAME</th>
+            <th>BIRTH DATE</th>
+            <th>SCHOOL</th>
+            <th>PROGRAM</th>
+            <th>PATHWAY</th>
+        </tr>
+
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.firstname }}</td>
+			<td>{{ student.midinit }}</td>
+			<td>{{ student.lastname }}</td>
+            <td>{{ student.bday }}</td>
+            <td>{{ student.school }}</td>
+            <td>{{ student.program }}</td>
+            <td>{{ student.path }}</td>
+        </tr>
+
+        <tr>
+            <td>
+                <a href="{{url_for('index')}}"><button>Go Back</button></a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
