@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>STUDENT INFO</title>
+    <link rel="stylesheet" type="text/css" href="static/style_student_info.css">
+</head>
+<body>
+	<h1>Create Schedule</h1>
+	
+	<form action="{{url_for('CollectInfo')}}">
+	
+        <label>Period 1:</label>
+        <input type="text" name="one" autofocus required><br><br>
+		
+		<label>Period 2:</label>
+        <input type="text" name="two" required><br><br>
+		
+		<label>Period 3:</label>
+        <input type="text" name="three" required><br><br>
+		
+		<label>Period 4:</label>
+        <input type="text" name="four" required><br><br>
+		
+		<label>Period 5:</label>
+        <input type="text" name="five" required><br><br>
+		
+		<label>Period 6:</label>
+        <input type="text" name="six" required><br><br>
+		
+		<label>Period 7:</label>
+        <input type="text" name="seven" required><br><br>
+		
+		<label>Period 8:</label>
+        <input type="text" name="eight" required><br><br>
+		
+		<button type="submit" id="btnsubmit" name="btnsubmit">SAVE</button>
+		
+		<a href="{{ url_for('index') }}">
+			<button type="button">CANCEL</button>
+		</a>
+		
+	</form>
+</body>
+</html>
+		

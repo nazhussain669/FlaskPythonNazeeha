@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Student Info Table</title>
+	<link rel="stylesheet" type="text/css" href="static/style_table_student.css">
+</head>
+<body>
+
+    <h1>Student Information Table</h1>
+
+    <table>
+        <tr>
+			<th>PERIOD</th>
+            <th>MONDAY</th>
+            <th>TUESDAY</th>
+			<th>WEDNESDAY</th>
+			<th>THURSDAY</th>
+            <th>FRIDAY</th>
+        </tr>
+			{% for sched in schedule %}
+				<tr>
+					<td>{{ sched.prdone }}</td>
+					<td>
+						<a href="{{ url_for('CollectInfo', prdone=sched.prdone) }}"></a>
+							{{ sched.prdtwo }}
+					</td>
+				</tr>
+			{% endfor %}
+
+        <tr>
+            <td>
+                <a href="{{url_for('index')}}"><button>Go Back</button></a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
