@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Bell Schedule</title>
+		<link rel="stylesheet" href="/static/style_table_student.css"></link>
+	</head>
+	<body>
+		<table id="tblinfo" name="tblinfo">
+			<tr>
+				<th>PERIOD</th>
+				<th>START</th>
+				<th>END</th>
+			</tr>
+				{% for bell in bellinfo %}
+					<tr>
+						<td>{{ bell.Period }}</td>
+						<td>
+							<a href="{{ url_for('BellInfo', Period=bell.Period) }}"></a>
+								{{ bell.Start }}
+						</td>
+						<td>
+							<a href="{{ url_for('BellInfo', Period=bell.Period) }}"></a>
+								{{ bell.End }}
+						</td>
+					</tr>
+				{% endfor %}
+			
+			<tr>
+				<td>
+					<a href="{{url_for('Grab')}}"><button>Go Back</button></a>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+				

@@ -1,12 +1,17 @@
 <html>
 <head>
     <title>Student Schedule Table</title>
+	<link rel="stylesheet" href="/static/style_table_student.css"></link>
 </head>
 <body>
 
     <h1>Student Schedule</h1>
+	
+	
+	<p>Fullname: {{namefull}}
+	OSIS ID: {{osisid}}</p>
 
-    <table border="1">
+    <table>
         <tr>
             <th>PERIOD</th>
             <th>MONDAY</th>
@@ -29,7 +34,7 @@
 
         <tr>
             <td>
-                <a href="{{url_for('index')}}">
+                <a href="{{url_for('Grab')}}">
                     <button>Go Back</button>
                 </a>
             </td>

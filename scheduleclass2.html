@@ -1,12 +1,20 @@
 <html>
 <head>
     <title>Create Schedule</title>
+	<link rel="stylesheet" href="/static/style_student_info.css"></link>
 </head>
 <body>
 
 	<h1>Create Schedule</h1>
+	<h2>Enter all fields to view class schedule.</h2>
 
 	<form action="{{url_for('CollectInfo')}}">
+	
+		<label>Full Name:</label>
+        <input type="text" name="fullname" autofocus required><br><br>
+		
+		<label>OSIS ID:</label>
+        <input type="number" name="osis" required><br><br>
 	
         <label>Period 1:</label>
         <input type="text" name="one" required><br><br>
@@ -32,10 +40,15 @@
 		<label>Period 8:</label>
         <input type="text" name="eight" required><br><br>
 		
-		<button type="submit">VIEW SCHEDULE</button>
+		<button type="submit">VIEW CLASS SCHEDULE</button>
 		
-		<a href="{{ url_for('index') }}">
-			<button type="button">CANCEL</button>
-		</a>
+		<a href="{{ url_for('Grab') }}"><button type="button">CANCEL</button></a>
 		
 	</form>
+	
+	<form action="{{url_for('BellInfo')}}">
+		<button type="submit">VIEW BELL SCHEDULE</button>
+		
+		<a href="{{ url_for('index') }}"><button type="button">MAIN</button></a>
+	</form>
+		
