@@ -40,31 +40,34 @@ def CollectInfo():
         {"period": "8", "course": pdeight},
     ]
 
+
     file1 = "StudentInformation.txt"
     file2 = "StudentSchedule.txt"
 
+    
     #open file1 in notes and start to write
     info_file = os.path.join(checknotes, file1)
     with open(info_file, 'w') as fcreate:
-        fcreate.write("Student Information \n")
-        fcreate.write("Full Name: " + namefull + "\n")
-        fcreate.write("OSIS ID: " + osisid + "\n")
+        fcreate.write("Student Information")
+        fcreate.write("Full Name: " + namefull)
+        fcreate.write("OSIS ID: " + osisid)
 
+    
     #open file2 in notes and start to write
     sched_file = os.path.join(checknotes, file2)
     with open(sched_file, 'w') as fcreate:
-        fcreate.write("Student Information \n")
-        fcreate.write("Full Name: " + namefull + "\n")
-        fcreate.write("OSIS ID: " + osisid + "\n")
+        fcreate.write("Student Schedule")
+        fcreate.write("Full Name: " + namefull)
+        fcreate.write("OSIS ID: " + osisid)
 
-        fcreate.write("Student Schedule: \n")
-        fcreate.write("Period 1: " + pdone + "\n")
-        fcreate.write("Period 2: " + pdtwo + "\n")
-        fcreate.write("Period 3: " + pdthree + "\n")
-        fcreate.write("Period 4: " + pdfour + "\n")
-        fcreate.write("Period 5: " + pdfive + "\n")
-        fcreate.write("Period 6: " + pdsix + "\n")
-        fcreate.write("Period 7: " + pdseven + "\n")
+        fcreate.write("Schedule: ")
+        fcreate.write("Period 1: " + pdone)
+        fcreate.write("Period 2: " + pdtwo)
+        fcreate.write("Period 3: " + pdthree)
+        fcreate.write("Period 4: " + pdfour)
+        fcreate.write("Period 5: " + pdfive)
+        fcreate.write("Period 6: " + pdsix)
+        fcreate.write("Period 7: " + pdseven)
         fcreate.write("Period 8: " + pdeight)
 
     return render_template("scheduleclass3.html",
