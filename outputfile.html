@@ -1,0 +1,10 @@
+<html>
+	<head>
+		<title>File Creation</title>
+	</head>
+	<body>
+		<label id="lblfileinfo" name="lblfileinfo">Directly from {{filename}}</label>
+		<pre>{{ fileinfo }}</pre>
+		<a href="{{url_for('static',filename=filename)}}"></a>
+	</body>
+</html>
