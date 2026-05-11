@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Retrieve Files</title>
+</head>
+
+<body>
+
+    <h1>Retrieve Banking Files</h1>
+
+    <form action="{{url_for('ViewFiles')}}">
+
+        <label>Enter Account Number:</label>
+        <input type="number" name="accountnum" autofocus required><br><br>
+
+        <button type="submit">VIEW FILES</button>
+
+        <a href="{{url_for('index')}}">
+            <button type="button">MAIN PAGE</button>
+        </a>
+
+    </form>
+
+</body>
+</html>

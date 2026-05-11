@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Create Bank Account</title>
+</head>
+
+<body>
+
+    <h1>Create Online Banking Account</h1>
+
+    <form action="{{url_for('Output')}}">
+
+        <label>Full Name:</label>
+        <input type="text" name="fullname" autofocus required><br><br>
+
+        <label>Age:</label>
+        <input type="number" name="age"><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email"><br><br>
+
+        <label>Account Number:</label>
+        <input type="number" name="accountnum" required><br><br>
+
+        <label>Account Type:</label>
+        <select name="accounttype">
+            <option>Checking</option>
+            <option>Savings</option>
+        </select><br><br>
+
+        <label>Starting Balance:</label>
+        <input type="number" name="balance" required><br><br>
+
+        <label>Username:</label>
+        <input type="text" name="username" required><br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" required><br><br>
+
+        <button type="submit">CREATE ACCOUNT</button>
+
+        <a href="{{url_for('index')}}">
+            <button type="button">MAIN PAGE</button>
+        </a>
+
+    </form>
+
+</body>
+</html>
