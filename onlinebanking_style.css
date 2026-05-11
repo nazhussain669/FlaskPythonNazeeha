@@ -1,0 +1,36 @@
+body
+{
+	background-color: lightblue;
+	justify-content: center;
+	text-align: center;
+}
+
+label
+{
+	display: inline-block;
+	color: black;
+}
+
+h2
+{
+	color: #8080ff;
+}
+
+input
+{
+	width: 10%;
+	padding: 10px;
+	border: 1px solid blue;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+button
+{
+	background:white;
+}
+
+button:hover
+{
+	background:blue;
+}
