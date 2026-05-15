@@ -71,6 +71,8 @@ def MakeTransaction():
     transtype = request.args.get("transtype")
     amount = request.args.get("amount")
 
+    return render_template('onlinebanking7.html')
+
 @app.route('/retrieve')
 def Retrieve():
     return render_template('onlinebanking4.html')
