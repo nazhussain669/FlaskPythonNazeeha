@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Recover Account</title>
+	<link rel="stylesheet" href="/static/onlinebanking_style.css"></link>
+</head>
+
+<body>
+
+    <h1>Recover Account Information</h1>
+
+    <form action="{{url_for('RecoverPassword')}}">
+
+        <label>Enter Account Number:</label>
+        <input type="number" name="accountnum" autofocus required><br><br>
+
+        <button type="submit">RECOVER</button>
+
+        <a href="{{url_for('index')}}">
+            <button type="button">MAIN PAGE</button>
+        </a>
+
+    </form>
+
+</body>
+</html>

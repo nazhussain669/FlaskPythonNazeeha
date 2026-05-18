@@ -6,21 +6,30 @@
 
 <body>
 
-    <h1>Complete a Transaction</h1>
+    <h1>Login To Your Account</h1>
 
     <form action="{{url_for('MakeTransaction')}}">
 
         <label>Enter Account Number:</label>
         <input type="number" name="accnum" autofocus required><br><br>
-		
-		<label>Transaction Type:</label>
+
+        <label>Enter PIN:</label>
+        <input type="password" name="pin" required><br><br>
+
+        <label>Account Type:</label>
+        <select name="accounttype" required>
+            <option>Checking</option>
+            <option>Savings</option>
+        </select><br><br>
+
+        <label>Transaction Type:</label>
         <select name="transtype" required>
             <option>DEPOSIT</option>
             <option>WITHDRAWAL</option>
         </select><br><br>
-		
-		<label>Amount:</label>
-		<input type="number" name="amount">
+
+        <label>Amount:</label>
+        <input type="number" name="amount" required><br><br>
 
         <button type="submit">SEND</button>
 

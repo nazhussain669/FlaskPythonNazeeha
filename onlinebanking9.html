@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Recovered Information</title>
+	<link rel="stylesheet" href="/static/onlinebanking_style.css"></link>
+</head>
+
+<body>
+
+    <h1>Recovered Account Information</h1>
+
+    <table>
+
+        <tr>
+            <th>ACCOUNT</th>
+            <th>INFORMATION</th>
+        </tr>
+
+        <tr>
+            <td>Account Number</td>
+            <td>{{accountnum}}</td>
+        </tr>
+
+        <tr>
+            <td>Username</td>
+            <td>{{username}}</td>
+        </tr>
+
+        <tr>
+            <td>Password</td>
+            <td>{{password}}</td>
+        </tr>
+
+        <tr>
+            <td>PIN</td>
+            <td>{{pin}}</td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <a href="{{url_for('index')}}">
+        <button>MAIN PAGE</button>
+    </a>
+
+</body>
+</html>

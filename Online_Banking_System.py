@@ -27,6 +27,7 @@ def Output():
     balance = request.args.get("balance")
     username = request.args.get("username")
     password = request.args.get("password")
+    pin = request.args.get("pin")
 
     personalfile = accountnum + "_personal.txt"
     bankingfile = accountnum + "_banking.txt"
@@ -40,15 +41,15 @@ def Output():
         fcreate.write("Email: " + email + "\n")
         fcreate.write("Username: " + username + "\n")
         fcreate.write("Password: " + password + "\n")
+        fcreate.write("PIN: " + pin + "\n")
 
     bankingpath = os.path.join(checkfiles, bankingfile)
 
     with open(bankingpath, 'w') as fcreate:
-        fcreate.write("BANK ACCOUNT INFORMATION\n")
-        fcreate.write("Account Number: " + accountnum + "\n")
-        fcreate.write("Account Type: " + accounttype + "\n")
-        fcreate.write("Current Balance: $" + balance + "\n")
-        fcreate.write("Recent Transaction: Account Created\n")
+        fcreate.write(accountnum + "\n")
+        fcreate.write(accounttype + "\n")
+        fcreate.write(balance + "\n")
+        fcreate.write("Account Created")
 
     return render_template('onlinebanking3.html',
                            fullname=fullname,
@@ -60,6 +61,49 @@ def Output():
                            username=username,
                            personalfile=personalfile,
                            bankingfile=bankingfile)
+
+@app.route('/login')
+def LogIn():
+    return render_template('onlinebanking6.html')
+
+@app.route('/transact')
+def MakeTransaction():
+
+    accnum = request.args.get("accnum")
+    accounttype = request.args.get("accounttype")
+    transtype = request.args.get("transtype")
+    amount = request.args.get("amount")
+
+    bankingfile = accnum + "_banking.txt"
+    bankingpath = os.path.join(checkfiles, bankingfile)
+
+    if os.path.exists(bankingpath):
+
+        with open(bankingpath, 'r') as fread:
+            lines = fread.readlines()
+
+        balance = float(lines[2]) # lines[2] means the third line because counting starts at 0
+
+        amount = float(amount)
+
+        if transtype == "DEPOSIT":
+            balance = balance + amount
+
+        elif transtype == "WITHDRAWAL":
+            balance = balance - amount
+
+        with open(bankingpath, 'w') as fcreate:
+            fcreate.write(accnum + "\n")
+            fcreate.write(accounttype + "\n")
+            fcreate.write(str(balance) + "\n")
+            fcreate.write(transtype + " $" + str(amount))
+
+    return render_template('onlinebanking7.html',
+                           accnum=accnum,
+                           accounttype=accounttype,
+                           transtype=transtype,
+                           amount=amount,
+                           balance=balance)
 
 @app.route('/retrieve')
 def Retrieve():
@@ -93,6 +137,39 @@ def ViewFiles():
                            bankinginfo=bankinginfo,
                            personalfile=personalfile,
                            bankingfile=bankingfile)
+
+@app.route('/forgot')
+def ForgotPassword():
+    return render_template('onlinebanking8.html')
+
+@app.route('/recover')
+def RecoverPassword():
+
+    accountnum = request.args.get("accountnum")
+
+    personalfile = accountnum + "_personal.txt"
+
+    personalpath = os.path.join(checkfiles, personalfile)
+
+    if os.path.exists(personalpath):
+
+        with open(personalpath, 'r') as fread:
+            personalinfo = fread.readlines()
+
+        username = personalinfo[4]
+        password = personalinfo[5]
+        pin = personalinfo[6]
+
+    else:
+        username = "Account Not Found"
+        password = "Account Not Found"
+        pin = "Account Not Found"
+
+    return render_template('onlinebanking9.html',
+                           username=username,
+                           password=password,
+                           pin=pin,
+                           accountnum=accountnum)
 
 if __name__ == "__main__":
     app.run()

@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>Transaction Complete</title>
+	<link rel="stylesheet" href="/static/onlinebanking_style.css"></link>
+</head>
+
+<body>
+
+    <h1>Transaction Completed</h1>
+
+    <table>
+
+        <tr>
+            <th>TRANSACTION INFO</th>
+            <th>DETAILS</th>
+        </tr>
+
+        <tr>
+            <td>Account Number</td>
+            <td>{{accnum}}</td>
+        </tr>
+
+        <tr>
+            <td>Account Type</td>
+            <td>{{accounttype}}</td>
+        </tr>
+
+        <tr>
+            <td>Transaction Type</td>
+            <td>{{transtype}}</td>
+        </tr>
+
+        <tr>
+            <td>Amount</td>
+            <td>${{amount}}</td>
+        </tr>
+
+        <tr>
+            <td>Updated Balance</td>
+            <td>${{balance}}</td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <a href="{{url_for('index')}}">
+        <button>MAIN PAGE</button>
+    </a>
+
+</body>
+</html>
