@@ -6,47 +6,59 @@
 
 <body>
 
-    <h1>Transaction Completed</h1>
+    <h1>Transaction Information</h1>
 
-    <table>
+<h2>{{message}}</h2>
 
-        <tr>
-            <th>TRANSACTION INFO</th>
-            <th>DETAILS</th>
-        </tr>
+{% if message != "Incorrect PIN" and message != "Account Not Found" %}
 
-        <tr>
-            <td>Account Number</td>
-            <td>{{accnum}}</td>
-        </tr>
+<table>
 
-        <tr>
-            <td>Account Type</td>
-            <td>{{accounttype}}</td>
-        </tr>
+    <tr>
+        <th>DETAIL</th>
+        <th>INFORMATION</th>
+    </tr>
 
-        <tr>
-            <td>Transaction Type</td>
-            <td>{{transtype}}</td>
-        </tr>
+    <tr>
+        <td>Account Number</td>
+        <td>{{accnum}}</td>
+    </tr>
 
-        <tr>
-            <td>Amount</td>
-            <td>${{amount}}</td>
-        </tr>
+    <tr>
+        <td>Account Type</td>
+        <td>{{accounttype}}</td>
+    </tr>
 
-        <tr>
-            <td>Updated Balance</td>
-            <td>${{balance}}</td>
-        </tr>
+    <tr>
+        <td>Transaction Type</td>
+        <td>{{transtype}}</td>
+    </tr>
 
-    </table>
+    <tr>
+        <td>Amount</td>
+        <td>${{amount}}</td>
+    </tr>
+
+    <tr>
+        <td>Updated Balance</td>
+        <td>${{balance}}</td>
+    </tr>
+
+</table>
+
+{% endif %}
 
     <br>
 
     <a href="{{url_for('index')}}">
-        <button>MAIN PAGE</button>
-    </a>
+		<button>MAIN PAGE</button>
+	</a>
+	
+	<br><br>
+	
+	<a href="{{url_for('index')}}">
+		<button>LOGOUT</button>
+	</a>
 
 </body>
 </html>

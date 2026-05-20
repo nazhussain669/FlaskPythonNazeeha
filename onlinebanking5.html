@@ -10,15 +10,23 @@
 
     <h3>{{personalfile}}</h3>
 
-    <p>{{personalinfo}}</p>
+    <pre>{{personalinfo}}</pre>
 
     <h3>{{bankingfile}}</h3>
+	
+	<p><b>Current Balance Information</b></p>
 
-    <p>{{bankinginfo}}</p>
+    <pre>{{bankinginfo}}</pre>
 
     <a href="{{url_for('index')}}">
-        <button>MAIN PAGE</button>
-    </a>
+		<button>MAIN PAGE</button>
+	</a>
+	
+	<br><br>
+	
+	<a href="{{url_for('index')}}">
+		<button>LOGOUT</button>
+	</a>
 
 </body>
 </html>

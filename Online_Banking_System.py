@@ -46,9 +46,9 @@ def Output():
     bankingpath = os.path.join(checkfiles, bankingfile)
 
     with open(bankingpath, 'w') as fcreate:
-        fcreate.write(accountnum + "\n")
-        fcreate.write(accounttype + "\n")
-        fcreate.write(balance + "\n")
+        fcreate.write("Account Number: " + accountnum + "\n")
+        fcreate.write("Account Type: " + accounttype + "\n")
+        fcreate.write("Current Balance: " + balance + "\n")
         fcreate.write("Account Created")
 
     return render_template('onlinebanking3.html',
@@ -73,6 +73,7 @@ def MakeTransaction():
     accounttype = request.args.get("accounttype")
     transtype = request.args.get("transtype")
     amount = request.args.get("amount")
+    pin = request.args.get("pin")
 
     bankingfile = accnum + "_banking.txt"
     bankingpath = os.path.join(checkfiles, bankingfile)
@@ -80,30 +81,56 @@ def MakeTransaction():
     if os.path.exists(bankingpath):
 
         with open(bankingpath, 'r') as fread:
-            lines = fread.readlines()
+            lines = fread.readlines() # reads all lines from the banking file and stores them into a list
 
-        balance = float(lines[2]) # lines[2] means the third line because counting starts at 0
+        personalfile = accnum + "_personal.txt"
+        personalpath = os.path.join(checkfiles, personalfile)
 
-        amount = float(amount)
+        with open(personalpath, 'r') as fread:
+            personallines = fread.readlines() # reads all lines from the personal file and stores them into a list
 
-        if transtype == "DEPOSIT":
-            balance = balance + amount
+        savedpin = personallines[6] # gets the PIN from the seventh line in the personal file
 
-        elif transtype == "WITHDRAWAL":
-            balance = balance - amount
+        if savedpin == "PIN: " + pin + "\n":
 
-        with open(bankingpath, 'w') as fcreate:
-            fcreate.write(accnum + "\n")
-            fcreate.write(accounttype + "\n")
-            fcreate.write(str(balance) + "\n")
-            fcreate.write(transtype + " $" + str(amount))
+            balance = float(lines[2]) # gets the balance from the third line in the banking file
+
+            amount = float(amount)
+
+            if transtype == "DEPOSIT":
+                balance = balance + amount
+                message = "Deposit Successful"
+
+            else:
+
+                if amount > balance:
+                    message = "Not Enough Money"
+
+                else:
+                    balance = balance - amount
+                    message = "Withdrawal Successful"
+
+            with open(bankingpath, 'w') as fcreate:
+                fcreate.write(accnum + "\n")
+                fcreate.write(accounttype + "\n")
+                fcreate.write(str(balance) + "\n")
+                fcreate.write(transtype + " $" + str(amount))
+
+        else:
+            message = "Incorrect PIN"
+            balance = 0
+
+    else:
+        message = "Account Not Found"
+        balance = 0
 
     return render_template('onlinebanking7.html',
                            accnum=accnum,
                            accounttype=accounttype,
                            transtype=transtype,
                            amount=amount,
-                           balance=balance)
+                           balance=balance,
+                           message=message)
 
 @app.route('/retrieve')
 def Retrieve():
@@ -156,9 +183,9 @@ def RecoverPassword():
         with open(personalpath, 'r') as fread:
             personalinfo = fread.readlines()
 
-        username = personalinfo[4]
-        password = personalinfo[5]
-        pin = personalinfo[6]
+        username = personalinfo[4] # gets the username from line 5 in the personal file
+        password = personalinfo[5] # gets the password from line 6 in the personal file
+        pin = personalinfo[6] # gets the PIN from line 7 in the personal file
 
     else:
         username = "Account Not Found"
