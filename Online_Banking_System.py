@@ -46,10 +46,10 @@ def Output():
     bankingpath = os.path.join(checkfiles, bankingfile)
 
     with open(bankingpath, 'w') as fcreate:
-        fcreate.write("Account Number: " + accountnum + "\n")
-        fcreate.write("Account Type: " + accounttype + "\n")
-        fcreate.write("Current Balance: " + balance + "\n")
-        fcreate.write("Account Created")
+        fcreate.write(accountnum + "\n")
+        fcreate.write(accounttype + "\n")
+        fcreate.write(balance + "\n")
+        fcreate.write("Recent Activity: " + "Account Created")
 
     return render_template('onlinebanking3.html',
                            fullname=fullname,
@@ -78,22 +78,26 @@ def MakeTransaction():
     bankingfile = accnum + "_banking.txt"
     bankingpath = os.path.join(checkfiles, bankingfile)
 
-    if os.path.exists(bankingpath):
+    foundaccount = os.path.exists(bankingpath)
+
+    if foundaccount:
 
         with open(bankingpath, 'r') as fread:
-            lines = fread.readlines() # reads all lines from the banking file and stores them into a list
+            lines = fread.readlines()
 
         personalfile = accnum + "_personal.txt"
         personalpath = os.path.join(checkfiles, personalfile)
 
         with open(personalpath, 'r') as fread:
-            personallines = fread.readlines() # reads all lines from the personal file and stores them into a list
+            personallines = fread.readlines()
 
-        savedpin = personallines[6] # gets the PIN from the seventh line in the personal file
+        # gets the PIN from line 7 in the personal file
+        savedpin = personallines[6]
 
         if savedpin == "PIN: " + pin + "\n":
 
-            balance = float(lines[2]) # gets the balance from the third line in the banking file
+            # gets the balance from line 3 in the banking file
+            balance = float(lines[2])
 
             amount = float(amount)
 
@@ -118,7 +122,9 @@ def MakeTransaction():
 
         else:
             message = "Incorrect PIN"
-            balance = 0
+
+            # gets the balance from line 3 in the banking file
+            balance = lines[2]
 
     else:
         message = "Account Not Found"
@@ -147,13 +153,16 @@ def ViewFiles():
     personalpath = os.path.join(checkfiles, personalfile)
     bankingpath = os.path.join(checkfiles, bankingfile)
 
-    if os.path.exists(personalpath):
+    foundpersonal = os.path.exists(personalpath)
+    foundbanking = os.path.exists(bankingpath)
+
+    if foundpersonal:
         with open(personalpath, 'r') as fread:
             personalinfo = fread.read()
     else:
         personalinfo = "Personal file not found."
 
-    if os.path.exists(bankingpath):
+    if foundbanking:
         with open(bankingpath, 'r') as fread:
             bankinginfo = fread.read()
     else:
@@ -178,14 +187,21 @@ def RecoverPassword():
 
     personalpath = os.path.join(checkfiles, personalfile)
 
-    if os.path.exists(personalpath):
+    foundpersonal = os.path.exists(personalpath)
+
+    if foundpersonal:
 
         with open(personalpath, 'r') as fread:
             personalinfo = fread.readlines()
 
-        username = personalinfo[4] # gets the username from line 5 in the personal file
-        password = personalinfo[5] # gets the password from line 6 in the personal file
-        pin = personalinfo[6] # gets the PIN from line 7 in the personal file
+        # gets the username from line 5 in the personal file
+        username = personalinfo[4]
+
+        # gets the password from line 6 in the personal file
+        password = personalinfo[5]
+
+        # gets the PIN from line 7 in the personal file
+        pin = personalinfo[6]
 
     else:
         username = "Account Not Found"
