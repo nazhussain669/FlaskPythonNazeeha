@@ -11,10 +11,10 @@
     <form action="{{url_for('MakeTransaction')}}">
 
         <label>Enter Account Number:</label>
-        <input type="number" name="accnum" autofocus required><br><br>
+        <input type="number" name="accnum" min="1000000" max="9999999" autofocus required><br><br>
 
         <label>Enter PIN:</label>
-        <input type="password" name="pin" required><br><br>
+        <input type="number" name="pin" min="1000" max="9999" required><br><br>
 
         <label>Account Type:</label>
         <select name="accounttype" required>
@@ -28,8 +28,8 @@
             <option>WITHDRAWAL</option>
         </select><br><br>
 
-        <label>Amount:</label>
-        <input type="number" name="amount" required><br><br>
+        <label>Amount($20+):</label>
+        <input type="number" name="amount" min="20" required><br><br>
 
         <button type="submit">SEND</button>
 
