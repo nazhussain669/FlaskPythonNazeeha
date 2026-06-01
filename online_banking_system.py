@@ -27,6 +27,7 @@ def Output():
     balance = request.args.get("balance")
     username = request.args.get("username")
     password = request.args.get("password")
+    pin = request.args.get("pin")
 
     personalfile = accountnum + "_personal.txt"
     bankingfile = accountnum + "_banking.txt"
@@ -40,15 +41,15 @@ def Output():
         fcreate.write("Email: " + email + "\n")
         fcreate.write("Username: " + username + "\n")
         fcreate.write("Password: " + password + "\n")
+        fcreate.write("PIN: " + pin + "\n")
 
     bankingpath = os.path.join(checkfiles, bankingfile)
 
     with open(bankingpath, 'w') as fcreate:
-        fcreate.write("BANK ACCOUNT INFORMATION\n")
-        fcreate.write("Account Number: " + accountnum + "\n")
-        fcreate.write("Account Type: " + accounttype + "\n")
-        fcreate.write("Current Balance: $" + balance + "\n")
-        fcreate.write("Recent Transaction: - ")
+        fcreate.write(accountnum + "\n")
+        fcreate.write(accounttype + "\n")
+        fcreate.write(balance + "\n")
+        fcreate.write("Recent Activity: " + "Account Created")
 
     return render_template('onlinebanking3.html',
                            fullname=fullname,
@@ -67,11 +68,75 @@ def LogIn():
 
 @app.route('/transact')
 def MakeTransaction():
+
     accnum = request.args.get("accnum")
+    accounttype = request.args.get("accounttype")
     transtype = request.args.get("transtype")
     amount = request.args.get("amount")
+    pin = request.args.get("pin")
 
-    return render_template('onlinebanking7.html')
+    bankingfile = accnum + "_banking.txt"
+    bankingpath = os.path.join(checkfiles, bankingfile)
+
+    foundaccount = os.path.exists(bankingpath)
+
+    if foundaccount:
+
+        with open(bankingpath, 'r') as fread:
+            lines = fread.readlines()
+
+        personalfile = accnum + "_personal.txt"
+        personalpath = os.path.join(checkfiles, personalfile)
+
+        with open(personalpath, 'r') as fread:
+            personallines = fread.readlines()
+
+        # gets the PIN from line 7 in the personal file
+        savedpin = personallines[6]
+
+        if savedpin == "PIN: " + pin + "\n":
+
+            # gets the balance from line 3 in the banking file
+            balance = float(lines[2])
+
+            amount = float(amount)
+
+            if transtype == "DEPOSIT":
+                balance = balance + amount
+                message = "Deposit Successful"
+
+            else:
+
+                if amount > balance:
+                    message = "Not Enough Money"
+
+                else:
+                    balance = balance - amount
+                    message = "Withdrawal Successful"
+
+            with open(bankingpath, 'w') as fcreate:
+                fcreate.write(accnum + "\n")
+                fcreate.write(accounttype + "\n")
+                fcreate.write(str(balance) + "\n")
+                fcreate.write(transtype + " $" + str(amount))
+
+        else:
+            message = "Incorrect PIN"
+
+            # gets the balance from line 3 in the banking file
+            balance = lines[2]
+
+    else:
+        message = "Account Not Found"
+        balance = 0
+
+    return render_template('onlinebanking7.html',
+                           accnum=accnum,
+                           accounttype=accounttype,
+                           transtype=transtype,
+                           amount=amount,
+                           balance=balance,
+                           message=message)
 
 @app.route('/retrieve')
 def Retrieve():
@@ -88,13 +153,16 @@ def ViewFiles():
     personalpath = os.path.join(checkfiles, personalfile)
     bankingpath = os.path.join(checkfiles, bankingfile)
 
-    if os.path.exists(personalpath):
+    foundpersonal = os.path.exists(personalpath)
+    foundbanking = os.path.exists(bankingpath)
+
+    if foundpersonal:
         with open(personalpath, 'r') as fread:
             personalinfo = fread.read()
     else:
         personalinfo = "Personal file not found."
 
-    if os.path.exists(bankingpath):
+    if foundbanking:
         with open(bankingpath, 'r') as fread:
             bankinginfo = fread.read()
     else:
@@ -105,6 +173,46 @@ def ViewFiles():
                            bankinginfo=bankinginfo,
                            personalfile=personalfile,
                            bankingfile=bankingfile)
+
+@app.route('/forgot')
+def ForgotPassword():
+    return render_template('onlinebanking8.html')
+
+@app.route('/recover')
+def RecoverPassword():
+
+    accountnum = request.args.get("accountnum")
+
+    personalfile = accountnum + "_personal.txt"
+
+    personalpath = os.path.join(checkfiles, personalfile)
+
+    foundpersonal = os.path.exists(personalpath)
+
+    if foundpersonal:
+
+        with open(personalpath, 'r') as fread:
+            personalinfo = fread.readlines()
+
+        # gets the username from line 5 in the personal file
+        username = personalinfo[4]
+
+        # gets the password from line 6 in the personal file
+        password = personalinfo[5]
+
+        # gets the PIN from line 7 in the personal file
+        pin = personalinfo[6]
+
+    else:
+        username = "Account Not Found"
+        password = "Account Not Found"
+        pin = "Account Not Found"
+
+    return render_template('onlinebanking9.html',
+                           username=username,
+                           password=password,
+                           pin=pin,
+                           accountnum=accountnum)
 
 if __name__ == "__main__":
     app.run()
