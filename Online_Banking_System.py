@@ -29,6 +29,22 @@ def Output():
     password = request.args.get("password")
     pin = request.args.get("pin")
 
+    if int(age) < 16:
+        return render_template("onlinebanking2.html",
+                           message="Age must be at least 16.")
+
+    if len(accountnum) != 7:
+        return render_template("onlinebanking2.html",
+                           message="Account Number must be exactly 7 digits.")
+
+    if float(balance) < 50:
+        return render_template("onlinebanking2.html",
+                           message="Starting Balance must be at least $50.")
+
+    if len(pin) != 4:
+        return render_template("onlinebanking2.html",
+                           message="PIN must be exactly 4 digits.")
+
     personalfile = accountnum + "_personal.txt"
     bankingfile = accountnum + "_banking.txt"
 
@@ -75,6 +91,18 @@ def MakeTransaction():
     amount = request.args.get("amount")
     pin = request.args.get("pin")
 
+    if len(accnum) != 7:
+        return render_template("onlinebanking6.html",
+                           message="Account Number must be exactly 7 digits.")
+
+    if len(pin) != 4:
+        return render_template("onlinebanking6.html",
+                           message="PIN must be exactly 4 digits.")
+
+    if float(amount) < 20:
+        return render_template("onlinebanking6.html",
+                           message="Transaction amount must be at least $20.")
+
     bankingfile = accnum + "_banking.txt"
     bankingpath = os.path.join(checkfiles, bankingfile)
 
@@ -118,7 +146,7 @@ def MakeTransaction():
                 fcreate.write(accnum + "\n")
                 fcreate.write(accounttype + "\n")
                 fcreate.write(str(balance) + "\n")
-                fcreate.write(transtype + " $" + str(amount))
+                fcreate.write("Recent Activity: " + transtype + " $" + str(amount))
 
         else:
             message = "Incorrect PIN"

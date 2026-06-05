@@ -8,38 +8,39 @@
 
     <h1>Create Online Banking Account</h1>
 	<h2>Please ensure all information is correct.</h1>
+	<h3>{{message}}</h3>
 
     <form action="{{url_for('Output')}}">
 
-        <label>*Full Name:</label>
+        <label>Full Name:*</label>
         <input type="text" name="fullname" autofocus required><br><br>
 
-        <label>*Age (16 yrs +):</label>
-        <input type="number" name="age" min="16" required><br><br>
+        <label>Age (16 yrs +):*</label>
+        <input type="number" name="age" required><br><br>
 
-        <label>*Email:</label>
+        <label>Email:*</label>
         <input type="email" name="email" required><br><br>
 
-        <label>*Account Number (7 digits):</label>
-        <input type="number" name="accountnum" min="1000000" max="9999999" required><br><br>
+        <label>Account Number (7 digit):*</label>
+        <input type="number" name="accountnum" required><br><br>
 
-        <label>*Account Type:</label>
+        <label>Account Type:*</label>
         <select name="accounttype" required>
             <option>Checking</option>
             <option>Savings</option>
         </select><br><br>
 
-        <label>*Starting Balance ($50+):</label>
-        <input type="number" name="balance" min="50" required><br><br>
+        <label>Starting Balance ($50+):*</label>
+        <input type="number" name="balance" required><br><br>
 
-        <label>*Username:</label>
+        <label>Username:*</label>
         <input type="text" name="username" required><br><br>
 
-        <label>*Password:</label>
+        <label>Password:*</label>
         <input type="password" name="password" required><br><br>
 		
-		<label>*Create PIN (4 digits):</label>
-		<input type="number" name="pin" min="1000" max="9999" required><br><br>
+		<label>Create PIN:*</label>
+		<input type="number" name="pin" required><br><br>
 
         <button type="submit">CREATE ACCOUNT</button>
 
